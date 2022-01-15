@@ -6,7 +6,7 @@ class Store {
   }
 
   processProductSale(name) {
-    this.stock.forEach(item => {
+    this.stock.forEach((item) => {
       if (item.name === name) {
         if (item.count > 0) {
           item.count--;
@@ -20,7 +20,7 @@ class Store {
   }
 
   replenishStock(name, count) {
-    this.stock.forEach(item => {
+    this.stock.forEach((item) => {
       if (item.name === name) {
         item.count += count;
         console.log(`Replenished ${item.name} by ${item.count}`);

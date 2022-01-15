@@ -24,8 +24,8 @@ describe('DayCare', () => {
     it("should not add a child over the 'ageLimit'", () => {
       const child = new Child('Tammy', 8);
       const dayCare = new DayCare();
-      const mock = jest.spyOn();
-      mock.mockImplementation();
+      const mock = jest.spyOn(console, 'log');
+      mock.mockImplementation(() => {});
 
       dayCare.addChild(child);
 
@@ -39,12 +39,12 @@ describe('DayCare', () => {
     it('should not add a child if already at capacity', () => {
       const dayCare = new DayCare();
       const child = new Child('Alice', 4);
-      const mock = jest.spyOn();
-      mock.mockImplementation();
+      const mock = jest.spyOn(console, 'log');
+      mock.mockImplementation(() => {});
       dayCare.children = [
         new Child('Tammy', 1),
         new Child('Mark', 2),
-        new Child('Alvin', 1)
+        new Child('Alvin', 1),
       ];
 
       dayCare.addChild(child);
@@ -73,15 +73,15 @@ describe('DayCare', () => {
       const child1 = new Child('Tammy', 1);
       const child2 = new Child('Mark', 2);
       const child3 = new Child('Alvin', 1);
-      const mock = jest.spyOn();
+      const mock = jest.spyOn(console, 'log');
       dayCare.children = [child1, child2, child3];
-      mock.mockImplementation();
+      mock.mockImplementation(() => {});
       const removed = dayCare.pickupChild(child2.name);
 
       expect(removed).toBe(child2);
       expect(dayCare.children.length).toEqual(2);
       expect(
-        dayCare.children.some(child => child.name === child2.name)
+        dayCare.children.some((child) => child.name === child2.name)
       ).toEqual(false);
       expect(mock).toBeCalledWith(`Picked up ${child2.name} from day care`);
       mock.mockRestore();
@@ -92,9 +92,9 @@ describe('DayCare', () => {
       const child1 = new Child('Tammy', 1);
       const child2 = new Child('Mark', 2);
       const child3 = new Child('Alvin', 1);
-      const mock = jest.spyOn();
+      const mock = jest.spyOn(console, 'log');
       dayCare.children = [child1, child2, child3];
-      mock.mockImplementation();
+      mock.mockImplementation(() => {});
       const removed = dayCare.pickupChild('Fred');
 
       expect(typeof removed).toEqual('undefined');
